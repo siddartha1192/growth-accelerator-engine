@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Syne", "sans-serif"],
-        body: ["DM Sans", "sans-serif"],
+        display: ["Space Grotesk", "sans-serif"],
+        body: ["Inter", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
       },
       colors: {
@@ -67,6 +67,7 @@ export default {
           cyan: "hsl(var(--tk-accent-cyan))",
           gold: "hsl(var(--tk-accent-gold))",
           green: "hsl(var(--tk-accent-green))",
+          violet: "hsl(var(--tk-accent-violet))",
         },
       },
       borderRadius: {

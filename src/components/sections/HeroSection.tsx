@@ -82,7 +82,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="font-display font-extrabold text-4xl md:text-6xl lg:text-7xl leading-[1.05] mb-2"
+            className="font-display font-bold text-4xl md:text-6xl lg:text-7xl leading-[1.05] mb-2 tracking-tight"
           >
             Tell Us About
             <br />
@@ -92,7 +92,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.6 }}
-            className="font-display font-extrabold text-4xl md:text-6xl lg:text-7xl leading-[1.05] text-gradient-blue mb-6"
+            className="font-display font-bold text-4xl md:text-6xl lg:text-7xl leading-[1.05] text-gradient-blue mb-6 tracking-tight"
           >
             We'll Show You
             <br />
