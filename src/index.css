@@ -30,10 +30,11 @@
     --tk-bg-secondary: 222 35% 9%;
     --tk-bg-card: 220 27% 11%;
     --tk-bg-elevated: 220 25% 16%;
-    --tk-accent-primary: 220 100% 62%;
-    --tk-accent-cyan: 190 100% 50%;
-    --tk-accent-gold: 37 91% 55%;
-    --tk-accent-green: 160 100% 45%;
+    --tk-accent-primary: 230 95% 65%;
+    --tk-accent-cyan: 185 100% 55%;
+    --tk-accent-gold: 32 95% 58%;
+    --tk-accent-green: 155 90% 48%;
+    --tk-accent-violet: 270 85% 65%;
     --tk-text-primary: 224 100% 97%;
     --tk-text-secondary: 218 18% 62%;
     --tk-text-muted: 215 14% 35%;
@@ -49,7 +50,7 @@
     --sidebar-border: 216 30% 18%;
     --sidebar-ring: 220 100% 62%;
 
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 }
 
@@ -59,26 +60,38 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer utilities {
   .font-display {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
   }
   .font-body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
   .font-mono-data {
     font-family: 'JetBrains Mono', monospace;
   }
   .text-gradient-blue {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--tk-accent-primary)), hsl(var(--tk-accent-cyan)));
+    background-image: linear-gradient(135deg, hsl(var(--tk-accent-primary)), hsl(var(--tk-accent-cyan)), hsl(var(--tk-accent-violet)));
+  }
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--tk-accent-gold)), hsl(var(--tk-accent-primary)));
+  }
+  .text-gradient-green {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--tk-accent-green)), hsl(var(--tk-accent-cyan)));
   }
   .glass-card {
     @apply backdrop-blur-md border rounded-2xl;
