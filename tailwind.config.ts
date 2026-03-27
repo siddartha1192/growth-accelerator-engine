@@ -67,6 +67,7 @@ export default {
           cyan: "hsl(var(--tk-accent-cyan))",
           gold: "hsl(var(--tk-accent-gold))",
           green: "hsl(var(--tk-accent-green))",
+          violet: "hsl(var(--tk-accent-violet))",
         },
       },
       borderRadius: {
