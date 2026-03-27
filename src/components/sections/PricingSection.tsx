@@ -53,8 +53,8 @@ export default function PricingSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.1 }}
-              className={`glass-card p-8 flex flex-col relative ${tier.highlight ? 'ring-1' : ''}`}
-              style={tier.highlight ? { ringColor: 'hsl(37 91% 55% / 0.4)', boxShadow: '0 0 40px hsl(37 91% 55% / 0.1)' } : {}}
+              className={`glass-card p-8 flex flex-col relative ${tier.highlight ? 'ring-1 ring-tk-gold/40' : ''}`}
+              style={tier.highlight ? { boxShadow: '0 0 40px hsl(37 91% 55% / 0.1)' } : {}}
             >
               <span
                 className="inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-wider mb-4 w-fit"
