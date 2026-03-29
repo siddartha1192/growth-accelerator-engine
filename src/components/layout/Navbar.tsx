@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Calendar, ChevronDown, Rocket, GitBranch, Brain, Globe, Shield } from 'lucide-react';
 
 const navLinks = ['Solutions', 'Industries', 'Framework', 'Case Studies', 'Insights'];
@@ -46,15 +47,20 @@ export default function Navbar() {
     >
       <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="font-display font-bold text-xl">
+        <Link to="/" className="font-display font-bold text-xl">
           <span className="text-foreground">Tek</span>
           <span className="tk-accent-primary">Keys</span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <div key={link} ref={link === 'Solutions' ? dropdownRef : undefined} className="relative">
+              {link === 'Framework' ? (
+                <Link to="/framework" className="tk-text-secondary hover:text-foreground transition-colors text-sm font-body">
+                  {link}
+                </Link>
+              ) : (
               <button
                 onClick={() => link === 'Solutions' && setSolutionsOpen(!solutionsOpen)}
                 className="tk-text-secondary hover:text-foreground transition-colors text-sm font-body flex items-center gap-1"
@@ -62,6 +68,7 @@ export default function Navbar() {
                 {link}
                 {link === 'Solutions' && <ChevronDown className="w-3 h-3" />}
               </button>
+              )}
               {link === 'Solutions' && solutionsOpen && (
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
@@ -113,9 +120,15 @@ export default function Navbar() {
           >
             <div className="px-6 py-8 flex flex-col gap-4">
               {navLinks.map((link) => (
+                link === 'Framework' ? (
+                  <Link key={link} to="/framework" className="text-lg text-foreground font-display" onClick={() => setMobileOpen(false)}>
+                    {link}
+                  </Link>
+                ) : (
                 <a key={link} href={`#${link.toLowerCase().replace(' ', '-')}`} className="text-lg text-foreground font-display" onClick={() => setMobileOpen(false)}>
                   {link}
                 </a>
+                )
               ))}
               <a href="#cta" className="mt-4 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-sm font-medium bg-primary text-primary-foreground" onClick={() => setMobileOpen(false)}>
                 <Calendar className="w-4 h-4" /> Book Strategy Call

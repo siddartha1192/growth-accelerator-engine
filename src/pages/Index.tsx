@@ -5,7 +5,6 @@ import TrustBar from '@/components/sections/TrustBar';
 import ProblemSection from '@/components/sections/ProblemSection';
 import DiagnosticFunnel from '@/components/sections/DiagnosticFunnel';
 import SolutionsGrid from '@/components/sections/SolutionsGrid';
-import FrameworkDiagram from '@/components/sections/FrameworkDiagram';
 import IndustriesSection from '@/components/sections/IndustriesSection';
 import CaseStudies from '@/components/sections/CaseStudies';
 import PricingSection from '@/components/sections/PricingSection';
@@ -21,7 +20,6 @@ const Index = () => {
       <ProblemSection />
       <DiagnosticFunnel />
       <SolutionsGrid />
-      <FrameworkDiagram />
       <IndustriesSection />
       <CaseStudies />
       <PricingSection />
