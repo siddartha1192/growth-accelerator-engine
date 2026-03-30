@@ -58,9 +58,9 @@ const phases = [
   {
     id: 'D3',
     label: 'DELIVER',
-    color: '#00d696',
-    bg: 'rgba(0,214,150,0.07)',
-    border: 'rgba(0,214,150,0.22)',
+    color: '#38bdf8',
+    bg: 'rgba(56,189,248,0.07)',
+    border: 'rgba(56,189,248,0.22)',
     tagline: 'On time. On budget. Every time.',
     desc: 'Execution is where most transformation programmes fail. Our delivery model runs in two-week agile sprints with weekly stakeholder check-ins, automated testing pipelines, and a hard no-surprises commitment. We build, test, and release in phases — de-risking adoption and ensuring the business never misses a beat.',
     timeline: '8–16 weeks',
@@ -84,9 +84,9 @@ const phases = [
   {
     id: 'D4',
     label: 'DISRUPT',
-    color: '#f59e0b',
-    bg: 'rgba(245,158,11,0.07)',
-    border: 'rgba(245,158,11,0.22)',
+    color: '#a5b4fc',
+    bg: 'rgba(165,180,252,0.07)',
+    border: 'rgba(165,180,252,0.22)',
     tagline: 'Never stop compounding.',
     desc: 'Going live is the beginning, not the end. The Disrupt phase plugs AI-driven monitoring into everything we built — tracking performance, predicting issues before they surface, and running continuous optimisation cycles. Your competitors are standing still while you compound.',
     timeline: 'Ongoing',
@@ -239,10 +239,18 @@ export default function FrameworkDiagram() {
             {/* Pause / play control */}
             <button
               onClick={() => setPaused(p => !p)}
-              className="ml-auto flex-shrink-0 flex items-center gap-1.5 px-4 self-center text-[11px] font-mono rounded-full transition-all"
-              style={{ color: 'rgba(140,165,210,0.5)', border: '1px solid rgba(255,255,255,0.08)', padding: '6px 12px' }}
+              className="ml-auto flex-shrink-0 flex items-center gap-2 self-center text-[11px] font-mono font-semibold rounded-full transition-all duration-200 hover:scale-105 active:scale-95"
+              style={{
+                padding: '7px 16px',
+                color: paused ? '#1d4ed8' : '#fff',
+                background: paused
+                  ? 'rgba(255,255,255,0.92)'
+                  : 'linear-gradient(135deg, #3b82f6, #0ea5e9)',
+                border: paused ? '1.5px solid #3b82f6' : '1.5px solid transparent',
+                boxShadow: paused ? '0 0 0 3px rgba(59,130,246,0.2)' : '0 2px 12px rgba(59,130,246,0.45)',
+              }}
             >
-              {paused ? '▶ Auto' : '⏸ Pause'}
+              {paused ? '▶ Resume' : '⏸ Pause'}
             </button>
           </div>
         </div>
@@ -449,24 +457,31 @@ export default function FrameworkDiagram() {
 
           {/* CTA card */}
           <div className="sticky top-24">
-            <div className="glass-card p-8 text-center"
-              style={{ border: '1px solid rgba(59,130,246,0.25)', background: 'linear-gradient(135deg, rgba(59,130,246,0.07), rgba(0,200,230,0.04))' }}>
-              <div className="w-14 h-14 rounded-2xl mx-auto mb-5 flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, rgba(59,130,246,0.25), rgba(0,200,230,0.15))' }}>
-                <span className="font-display font-black text-xl text-gradient-blue">TK</span>
+            <div className="p-8 text-center rounded-2xl overflow-hidden relative"
+              style={{ border: '1px solid rgba(59,130,246,0.2)', background: 'linear-gradient(160deg, #ffffff 0%, #eff6ff 40%, #dbeafe 100%)' }}>
+
+              {/* Subtle blue glow in corner */}
+              <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full pointer-events-none"
+                style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)' }} />
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full pointer-events-none"
+                style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.14) 0%, transparent 70%)' }} />
+
+              {/* Logo */}
+              <div className="mx-auto mb-5 w-fit">
+                <img src="/logo.jpeg" alt="TekKeys" className="h-12 w-auto object-contain mx-auto" />
               </div>
-              <h3 className="font-display font-bold text-xl mb-2">Ready to start your transformation?</h3>
-              <p className="text-sm mb-6 leading-relaxed" style={{ color: 'hsl(210 50% 78%)' }}>
+              <h3 className="font-display font-bold text-xl mb-2 relative" style={{ color: 'hsl(220 50% 15%)' }}>Ready to start your transformation?</h3>
+              <p className="text-sm mb-6 leading-relaxed relative" style={{ color: 'hsl(215 30% 45%)' }}>
                 Book a free 30-minute strategy call. We'll identify which phase is right for you and what results you can expect in 90 days.
               </p>
-              <a href="/#diagnosis"
-                className="block w-full py-3.5 rounded-xl text-sm font-semibold text-white text-center mb-3 hover:opacity-90 transition-opacity"
-                style={{ background: 'linear-gradient(135deg, hsl(220 100% 62%), hsl(190 100% 50%))' }}>
+              <a href="/ai-growth-engine"
+                className="block w-full py-3.5 rounded-xl text-sm font-semibold text-white text-center mb-3 hover:opacity-90 transition-opacity relative"
+                style={{ background: 'linear-gradient(135deg, hsl(220 100% 55%), hsl(195 100% 45%))', boxShadow: '0 4px 16px hsl(220 100% 60% / 0.35)' }}>
                 Get My Free Growth Diagnosis
               </a>
               <a href="/"
-                className="block w-full py-3 rounded-xl text-sm hover:text-white transition-colors text-center"
-                style={{ color: 'hsl(210 50% 65%)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                className="block w-full py-3 rounded-xl text-sm transition-colors text-center relative hover:bg-blue-50"
+                style={{ color: 'hsl(215 60% 50%)', border: '1px solid hsl(215 60% 80%)' }}>
                 ← Back to Home
               </a>
             </div>

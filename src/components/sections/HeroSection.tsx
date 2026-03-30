@@ -347,7 +347,7 @@ export default function HeroSection() {
 
   return (
     <section id="hero" ref={heroRef} onMouseMove={handleMouseMove}
-      className="relative min-h-screen flex items-center overflow-hidden pt-16"
+      className="relative min-h-screen flex items-center overflow-hidden pt-12"
       style={{ backgroundColor: '#04091c' }}>
 
       {/* ══ Background ══ */}
@@ -394,7 +394,7 @@ export default function HeroSection() {
 
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.44, duration: 0.4, ease: EASE }} className="flex items-center gap-3">
-            <a href="#diagnosis"
+            <a href="/ai-growth-engine"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white"
               style={{ background: 'linear-gradient(135deg, hsl(230 95% 62%), hsl(220 100% 56%))', boxShadow: '0 4px 18px hsl(230 95% 65% / 0.32)' }}>
               Full Diagnosis <ArrowRight className="w-3.5 h-3.5" />
@@ -472,7 +472,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.50, duration: 0.45, ease: EASE }}
               className="flex items-center gap-3">
-              <a href="#diagnosis"
+              <a href="/ai-growth-engine"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white transition-all hover:scale-[1.03] active:scale-[0.97]"
                 style={{ background: 'linear-gradient(135deg, hsl(230 95% 62%), hsl(220 100% 56%))', boxShadow: '0 4px 24px hsl(230 95% 65% / 0.38)' }}>
                 Full Diagnosis <ArrowRight className="w-3.5 h-3.5" />

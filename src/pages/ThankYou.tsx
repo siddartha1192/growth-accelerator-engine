@@ -44,11 +44,7 @@ export default function ThankYou() {
   const navigate = useNavigate();
 
   const goToFullAnalysis = () => {
-    navigate('/');
-    // Wait for home page to mount, then scroll to the section
-    setTimeout(() => {
-      document.getElementById('diagnosis')?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    navigate('/ai-growth-engine');
   };
   const painPoint = state?.painPoint;
 

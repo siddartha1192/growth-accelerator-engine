@@ -763,6 +763,9 @@ export default function DiagnosticFunnel() {
 
       <div className="max-w-[1280px] mx-auto px-6 relative z-10">
 
+        {/* Scroll anchor — plain div so it's in the DOM immediately on navigation */}
+        <div id="ai-growth-engine" style={{ scrollMarginTop: '64px' }} />
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}

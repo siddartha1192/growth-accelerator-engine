@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Menu, X, Calendar, ChevronDown, Rocket, GitBranch, Brain, Globe, Shield } from 'lucide-react';
 
-const navLinks = ['Solutions', 'Industries', 'Framework', 'Case Studies', 'Insights'];
+const navLinks = ['Framework', 'Case Studies', 'Insights'];
 
 const solutionItems = [
   { icon: Rocket, title: 'Growth Acceleration Systems', desc: '2–3X lead conversion' },
@@ -37,50 +37,80 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'tk-bg-primary/95 backdrop-blur-xl border-b tk-border-subtle' : 'bg-transparent'
-      }`}
-      style={scrolled ? { backgroundColor: 'hsl(222 50% 6% / 0.95)', backdropFilter: 'blur(24px)', borderBottom: '1px solid hsl(216 30% 18%)' } : {}}
+      className="fixed top-0 left-0 right-0 z-50 bg-white transition-shadow duration-300"
+      style={{
+        borderBottom: '1px solid rgba(0,0,0,0.08)',
+        boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.08)' : '0 1px 0 rgba(0,0,0,0.05)',
+      }}
     >
-      <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-[1280px] mx-auto px-6 h-12 flex items-center justify-between">
+
         {/* Logo */}
-        <Link to="/" className="font-display font-bold text-xl">
-          <span className="text-foreground">Tek</span>
-          <span className="tk-accent-primary">Keys</span>
+        <Link to="/" className="flex items-center">
+          <img src="/logo.jpeg" alt="TekKeys" className="h-7 w-auto object-contain" />
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-0.5">
+          <Link
+            to="/"
+            className="text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-1.5 rounded-lg transition-all duration-150"
+          >
+            Home
+          </Link>
           {navLinks.map((link) => (
             <div key={link} ref={link === 'Solutions' ? dropdownRef : undefined} className="relative">
-              {link === 'Framework' ? (
-                <Link to="/framework" className="tk-text-secondary hover:text-foreground transition-colors text-sm font-body">
+              {link === 'Framework' || link === 'Case Studies' || link === 'Insights' ? (
+                <Link
+                  to={link === 'Framework' ? '/framework' : link === 'Case Studies' ? '/case-studies' : '#insights'}
+                  className="text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-1.5 rounded-lg transition-all duration-150"
+                >
                   {link}
                 </Link>
               ) : (
-              <button
-                onClick={() => link === 'Solutions' && setSolutionsOpen(!solutionsOpen)}
-                className="tk-text-secondary hover:text-foreground transition-colors text-sm font-body flex items-center gap-1"
-              >
-                {link}
-                {link === 'Solutions' && <ChevronDown className="w-3 h-3" />}
-              </button>
+                <button
+                  onClick={() => link === 'Solutions' && setSolutionsOpen(!solutionsOpen)}
+                  className="text-xs font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-1.5 rounded-lg transition-all duration-150 flex items-center gap-1"
+                >
+                  {link}
+                  {link === 'Solutions' && (
+                    <ChevronDown
+                      className="w-3.5 h-3.5 transition-transform duration-200"
+                      style={{ transform: solutionsOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                    />
+                  )}
+                </button>
               )}
+
               {link === 'Solutions' && solutionsOpen && (
                 <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[480px] glass-card p-4 grid grid-cols-1 gap-2"
+                  initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.18, ease: 'easeOut' }}
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[460px] p-2 grid grid-cols-1 gap-0.5 rounded-2xl bg-white"
+                  style={{ border: '1px solid rgba(0,0,0,0.08)', boxShadow: '0 8px 40px rgba(0,0,0,0.12)' }}
                 >
                   {solutionItems.map((item) => (
-                    <a key={item.title} href="#solutions" className="flex items-center gap-3 p-3 rounded-xl hover:bg-muted/30 transition-colors">
-                      <item.icon className="w-5 h-5 tk-accent-primary flex-shrink-0" />
+                    <a
+                      key={item.title}
+                      href="#solutions"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 transition-colors duration-150 group"
+                    >
+                      <div
+                        className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{
+                          background: 'linear-gradient(135deg, hsl(230 95% 65% / 0.12), hsl(185 100% 55% / 0.12))',
+                          border: '1px solid hsl(230 95% 65% / 0.2)',
+                        }}
+                      >
+                        <item.icon className="w-4 h-4" style={{ color: 'hsl(230 95% 55%)' }} />
+                      </div>
                       <div>
-                        <div className="text-sm font-medium text-foreground">{item.title}</div>
-                        <div className="text-xs tk-text-secondary">{item.desc}</div>
+                        <div className="text-sm font-semibold text-gray-900 group-hover:text-blue-700 transition-colors duration-150">{item.title}</div>
+                        <div className="text-xs mt-0.5 text-gray-500">{item.desc}</div>
                       </div>
                     </a>
                   ))}
@@ -91,11 +121,20 @@ export default function Navbar() {
         </div>
 
         {/* Right */}
-        <div className="hidden lg:flex items-center gap-4">
-          <a href="#" className="text-sm tk-text-secondary hover:text-foreground transition-colors">Partner Network</a>
+        <div className="hidden lg:flex items-center gap-2">
           <a
-            href="#cta"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-primary text-primary-foreground hover:scale-[1.02] active:scale-[0.98] transition-transform"
+            href="#"
+            className="text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-1.5 rounded-lg transition-all duration-150"
+          >
+            Partner Network
+          </a>
+          <a
+            href="/ai-growth-engine"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-semibold text-white hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-150"
+            style={{
+              background: 'linear-gradient(135deg, hsl(230 95% 58%), hsl(220 100% 50%))',
+              boxShadow: '0 2px 14px hsl(230 95% 60% / 0.35)',
+            }}
           >
             <Calendar className="w-4 h-4" />
             Book Strategy Call
@@ -103,8 +142,11 @@ export default function Navbar() {
         </div>
 
         {/* Mobile toggle */}
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden text-foreground">
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="lg:hidden p-1.5 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-150"
+        >
+          {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
         </button>
       </div>
 
@@ -115,24 +157,51 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden overflow-hidden"
-            style={{ backgroundColor: 'hsl(222 50% 6% / 0.98)' }}
+            className="lg:hidden overflow-hidden bg-white"
+            style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}
           >
-            <div className="px-6 py-8 flex flex-col gap-4">
+            <div className="px-4 py-4 flex flex-col gap-0.5">
+              <Link
+                to="/"
+                className="text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 px-3 py-2.5 rounded-xl transition-all duration-150"
+                onClick={() => setMobileOpen(false)}
+              >
+                Home
+              </Link>
               {navLinks.map((link) => (
-                link === 'Framework' ? (
-                  <Link key={link} to="/framework" className="text-lg text-foreground font-display" onClick={() => setMobileOpen(false)}>
+                link === 'Framework' || link === 'Case Studies' || link === 'Insights' ? (
+                  <Link
+                    key={link}
+                    to={link === 'Framework' ? '/framework' : link === 'Case Studies' ? '/case-studies' : '#insights'}
+                    className="text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 px-3 py-2.5 rounded-xl transition-all duration-150"
+                    onClick={() => setMobileOpen(false)}
+                  >
                     {link}
                   </Link>
                 ) : (
-                <a key={link} href={`#${link.toLowerCase().replace(' ', '-')}`} className="text-lg text-foreground font-display" onClick={() => setMobileOpen(false)}>
-                  {link}
-                </a>
+                  <a
+                    key={link}
+                    href={`#${link.toLowerCase().replace(' ', '-')}`}
+                    className="text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 px-3 py-2.5 rounded-xl transition-all duration-150"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link}
+                  </a>
                 )
               ))}
-              <a href="#cta" className="mt-4 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-sm font-medium bg-primary text-primary-foreground" onClick={() => setMobileOpen(false)}>
-                <Calendar className="w-4 h-4" /> Book Strategy Call
-              </a>
+              <div className="pt-3 mt-2 border-t border-gray-100">
+                <a
+                  href="/ai-growth-engine"
+                  className="inline-flex w-full items-center justify-center gap-2 px-5 py-3 rounded-full text-sm font-semibold text-white hover:opacity-90 transition-opacity duration-150"
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(230 95% 58%), hsl(220 100% 50%))',
+                    boxShadow: '0 2px 14px hsl(230 95% 60% / 0.3)',
+                  }}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <Calendar className="w-4 h-4" /> Book Strategy Call
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
